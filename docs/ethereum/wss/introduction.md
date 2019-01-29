@@ -1,7 +1,7 @@
 # Introduction
 
 Infura's websocket endpoint provides support for Pub/Sub API as well as JSON-RPC filter support.
-The regular Ethereum API is also supported and documented in the 'examples' portion of 'Ethereum API'
+Additionally, the regular Ethereum JSON-RPC API is also supported over a websocket connection and documented in the 'EXAMPLE' portion for each 'Ethereum JSON-RPC' call.
 
 All examples in this reference section uses `wscat`, but will work with any tool that supports websockets.
 
