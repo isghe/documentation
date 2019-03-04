@@ -6,7 +6,7 @@
 
 **What are the supported networks?**
 
-Mainnet, Ropsten, Rinkeby, Kovan
+Mainnet, Ropsten, Rinkeby, Kovan, Goerli
 
 **Is batch support available?**
 
