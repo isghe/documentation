@@ -2,11 +2,13 @@
 
 **What is the Infura endpoint for WebSockets?**
 
-`wss://<network>.infura.io/ws`
+There is an endpoint for each supported network (Mainnet, Ropsten, Rinkeby, Kovan, Görli):
 
-**What are the supported networks?**
-
-Mainnet, Ropsten, Rinkeby, Kovan, Goerli
+- `wss://mainnet.infura.io/ws`
+- `wss://ropsten.infura.io/ws`
+- `wss://rinkeby.infura.io/ws`
+- `wss://kovan.infura.io/ws`
+- `wss://goerli.infura.io/ws`
 
 **Is batch support available?**
 
@@ -16,7 +18,7 @@ Yes
 
 Yes
 
-**Max payload size?**
+**What is the max payload size?**
 
 128MB
 
