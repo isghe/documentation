@@ -2,13 +2,7 @@
 
 **What is the Infura endpoint for WebSockets?**
 
-There is an endpoint for each supported network (Mainnet, Ropsten, Rinkeby, Kovan, Görli):
-
-- `wss://mainnet.infura.io/ws`
-- `wss://ropsten.infura.io/ws`
-- `wss://rinkeby.infura.io/ws`
-- `wss://kovan.infura.io/ws`
-- `wss://goerli.infura.io/ws`
+There is an endpoint for each supported network (Mainnet, Ropsten, Rinkeby, Kovan, Görli); see the [Getting started guide](https://infura.io/docs/gettingStarted/chooseaNetwork) for details.
 
 **Is batch support available?**
 
