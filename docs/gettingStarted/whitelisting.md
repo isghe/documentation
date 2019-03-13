@@ -1,4 +1,4 @@
-# Securing with whitelists
+# Securing With Whitelists
 Developers rely on Infura's Dashboard view to understand their Dapp's API usage and how best they can optimize. If you
 are sending API requests from a web browser or other client-side application which does not have the ability to secure
 your `PROJECT_SECRET`, whitelisting can be used to prevent a third party from using your `Project ID` on another website.

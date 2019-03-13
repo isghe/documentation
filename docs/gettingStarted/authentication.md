@@ -1,4 +1,4 @@
-# Securing your credentials
+# Securing Your Credentials
 
 
 ### Authenticating using a Project ID
