@@ -56,7 +56,7 @@ HTTP Origin matching supports wildcard subdomain patterns similarly to TLS certi
 
 **Request's Origin Header:** `myapp.example.com`
 
-**Result:**: Request is **allowed**. Any requests from origins not matching `*.example.com` are requests are rejected
+**Result:**: Request is **allowed**. Any requests from origins not matching `*.example.com` are rejected
 
 
 ### Ethereum Addresses
@@ -66,7 +66,7 @@ When an address is added to the whitelist, any API requests which query addresse
 
 
 #### Whitelist Compatible Request Methods
-The following RPC methods take an Ethereum address paramter and thus are compatible with whitelisting.
+The following RPC methods take an Ethereum address parameter and thus are compatible with whitelisting.
 - eth_call
 - eth_estimateGas
 - eth_getLogs
@@ -89,7 +89,7 @@ curl  -H 'Content-Type: application/json' \
 ```
 
 **Result:**
-Request is **allowed**. Any [compatible request methods](#compatible-request-methods) which include other addresses as a parameter will be rejected.
+Request is **allowed**. Any [compatible request methods](#compatible-request-methods) which include only non-whitelisted addresses as a parameter will be rejected.
 
 
 ### Best Practices
