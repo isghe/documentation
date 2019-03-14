@@ -38,7 +38,7 @@ The User-Agent whitelist utilizes partial string matching. If the whitelisted st
 
 **Request's User-Agent:** `com.example.dapp/v1.2.1 (Linux; Android 7.0; SM-G930V Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.125 Mobile Safari/537.36`
 
-**Result:**: Request is **allowed** and all other user-agent requests are rejected
+**Result:** Request is **allowed** and all other user-agent requests are rejected
 
 
 ### HTTP Origin
@@ -56,7 +56,7 @@ HTTP Origin matching supports wildcard subdomain patterns similarly to TLS certi
 
 **Request's Origin Header:** `myapp.example.com`
 
-**Result:**: Request is **allowed**. Any requests from origins not matching `*.example.com` are rejected
+**Result:** Request is **allowed**. Any requests from origins not matching `*.example.com` are rejected
 
 
 ### Ethereum Addresses
