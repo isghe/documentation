@@ -9,21 +9,7 @@ Some tools you can use for making these requests
 - [wscat](https://github.com/websockets/wscat)
 - [Advanced Rest Client](https://install.advancedrestclient.com/)
 
-#### Websocket authentication by Project ID
-Websocket subscription requests should include your `PROJECT_ID` in the websocket API url.
-```
-wscat -c wss://mainnet.infura.io/ws/v3/YOUR-PROJECT-ID
-```
-
-#### Websocket authentication by Project ID and Project Secret
-Subscriptions initiated from a secure environment can include the `Project Secret` as shown below:
-```
-wscat -c wss://mainnet.infura.io/ws/v3/YOUR-PROJECT-ID --auth ":YOUR-PROJECT-SECRET"
-```
-
-
 #### EXAMPLE
-
 The following is an example showing a connection to the websocket endpoint and using subscriptions through web3.js 1.0.
 
 NOTE: web3.js 1.0.0-beta.34 has an open issue with request headers. (https://github.com/ethereum/web3.js/issues/1559)
