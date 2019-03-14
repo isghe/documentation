@@ -9,7 +9,7 @@ your `Project Secret`, whitelisting can be used to prevent a third party from us
 - Each whitelist type is "AND"ed together
 - Multiple entries of the same type are "OR"ed.
 
-####Example
+#### Example
 
 **Scenario:** Alice whitelisted the `User-Agent` of her mobile application and the `Origin` where her web app is hosted.
 
@@ -23,7 +23,6 @@ Both Alice's mobile app AND her website are allowed to use the same Project ID. 
 function on the new site.
 
 
----
 ### User-Agents
 If you are distributing a product which embeds an API key and you have the ability to set a custom User-Agent (e.g. an Electron app, iOS or Android app),
 we recommend adding the known User-Agent to your whitelist.
@@ -40,8 +39,6 @@ The User-Agent whitelist utilizes partial string matching. If the whitelisted st
 **Request's User-Agent:** `com.example.dapp/v1.2.1 (Linux; Android 7.0; SM-G930V Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.125 Mobile Safari/537.36`
 
 **Result:**: Request is **allowed** and all other user-agent requests are rejected
-
----
 
 
 ### HTTP Origin
@@ -60,8 +57,6 @@ HTTP Origin matching supports wildcard subdomain patterns similarly to TLS certi
 **Request's Origin Header:** `myapp.example.com`
 
 **Result:**: Request is **allowed**. Any requests from origins not matching `*.example.com` are requests are rejected
-
----
 
 
 ### Ethereum Addresses
@@ -95,7 +90,6 @@ curl  -H 'Content-Type: application/json' \
 
 **Result:**
 Request is **allowed**. Any [compatible request methods](#compatible-request-methods) which include other addresses as a parameter will be rejected.
----
 
 
 ### Best Practices
