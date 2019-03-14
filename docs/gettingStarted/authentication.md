@@ -16,3 +16,8 @@ curl --user :YOUR-PROJECT-SECRET \
   https://<network>.infura.io/v3/YOUR-PROJECT-ID
 ```
 Note that the user field of the request is left blank and the project id is passed in the URL.
+
+#### Require a Project Secret
+
+By default, the Project Secret is optional. If you know you will only be interacting with Infura APIs from a secure environment (e.g. your backend web application),
+you can toggle the *Private Secret Required* setting in your Project's configuration page under the *Security* section. 
