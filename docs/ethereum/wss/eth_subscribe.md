@@ -4,7 +4,7 @@ Creates a new subscription over particular events. The node will return a subscr
 
 ### REQUEST PARAMS
 - `SUBSCRIPTION TYPE NAME` _[required]_ 
-    - `newHeads`- Subscribing to this, fires a notification each time a new header is appended to the chain, including chain reorganizations. Users can use the bloom filter to determine if the block contains logs that are interested to them.
+    - `newHeads`- Subscribing to this, fires a notification each time a new header is appended to the chain, including chain reorganizations. In case of a chain reorganization the subscription will emit all new headers for the new chain. Therefore the subscription can emit multiple headers on the same height.
     - `logs` - Returns logs that are included in new imported blocks and match the given filter criteria. In case of a chain reorganization previous sent logs that are on the old chain will be resend with the removed property set to true. Logs from transactions that ended up in the new chain are emitted. Therefore a subscription can emit logs for the same transaction multiple times.
         - `address` (optional) - either an address or an array of addresses. Only logs that are created from these addresses are returned (optional)
         - `topics` (optional) - only logs which match the specified topics (optional)
