@@ -2,7 +2,7 @@
 
 
 ### Authenticating using a Project ID
-Infura's API's require a valid `Project ID` to be included with your request traffic. This identifier should be appended
+Infura's Ethereum APIs require a valid `Project ID` to be included with your request traffic. This identifier should be appended
 to the request URL.
 
 ```curl https://<network>.infura.io/v3/YOUR-PROJECT-ID```
