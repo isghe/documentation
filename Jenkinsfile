@@ -28,6 +28,14 @@ def deploy(target) {
       try {
         sh """
           yarn run ${target == 'dev' ? 'bottler-dev' : 'bottler'}
+          if [ -f bundle.json ]; then
+            aws s3 cp bundle.json s3://infura-docs/bundle.json --acl "public-read"
+            rm bundle.json
+          fi
+          if [ -f bundleDev.json ]; then
+            aws s3 cp bundleDev.json s3://infura-docs/bundleDev.json --acl "public-read"
+            rm bundleDev.json
+          fi
         """
         githubNotify context: 'ci/jenkins: deploy-${target}', status: 'SUCCESS'
       } catch (err) {
