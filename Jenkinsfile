@@ -5,15 +5,13 @@ def slack(Map args) {
   slackSend(color: args.color, message: args.message, tokenCredentialId: 'slack-token', channel: 'G8EFQV8VC', baseUrl: 'https://consensys.slack.com/services/hooks/jenkins-ci/')
 }
 
-def build() {
-  stage("Build") {
+def installDeps() {
+  stage("Install deps") {
     container('ci') {
       githubNotify context: 'ci/jenkins: build', status: 'PENDING'
+      checkout scm
       try {
-        sh """
-          yarn
-          yarn run bottler
-        """
+        sh 'yarn'
         githubNotify context: 'ci/jenkins: build', status: 'SUCCESS'
       } catch (err) {
         githubNotify context: 'ci/jenkins: build', status: 'ERROR'
@@ -22,6 +20,25 @@ def build() {
     }
   }
 }
+
+def deploy(target) {
+  stage("Deploy ${target}") {
+    container('ci') {
+      githubNotify context: 'ci/jenkins: deploy-${target}', status: 'PENDING'
+      try {
+        sh """
+          yarn run ${target == 'dev' ? 'bottler-dev' : 'bottler'}
+        """
+        githubNotify context: 'ci/jenkins: deploy-${target}', status: 'SUCCESS'
+      } catch (err) {
+        githubNotify context: 'ci/jenkins: deploy-${target}', status: 'ERROR'
+        throw err
+      }
+    }
+  }
+}
+
+
 
 
 podTemplate(label: label, podRetention: onFailure(), activeDeadlineSeconds: 600, yaml: """
@@ -42,7 +59,8 @@ spec:
 """
   ) {
   node(label) {
-    this.build()
+    this.installDeps()
+    this.deploy('dev')
 
     // if ("${env.BRANCH_NAME}" != "master") {
     //   this.deploy('dev')
