@@ -1,5 +1,4 @@
 def label = "jenkins-documentation-${UUID.randomUUID().toString()}"
-def scmVars = {};
 
 def slack(Map args) {
   slackSend(color: args.color, message: args.message, tokenCredentialId: 'slack-token', channel: 'G8EFQV8VC', baseUrl: 'https://consensys.slack.com/services/hooks/jenkins-ci/')
@@ -24,30 +23,28 @@ def installDeps() {
 def deploy(target) {
   stage("Deploy ${target}") {
     container('ci') {
+      this.slack(color: 'warning', message: ":ship: *Deploy of `infura.io documentation` to ${target} has begun.*\n ${env.RUN_DISPLAY_URL}")
       githubNotify context: 'ci/jenkins: deploy-${target}', status: 'PENDING'
       try {
         sh """
           yarn run ${target == 'dev' ? 'bottler-dev' : 'bottler'}
           if [ -f bundle.json ]; then
             aws s3 cp bundle.json s3://infura-docs/bundle.json --acl "public-read"
-            rm bundle.json
           fi
           if [ -f bundleDev.json ]; then
             aws s3 cp bundleDev.json s3://infura-docs/bundleDev.json --acl "public-read"
-            rm bundleDev.json
           fi
         """
         githubNotify context: 'ci/jenkins: deploy-${target}', status: 'SUCCESS'
+        this.slack(color: 'good', message: ":rocketship: *Deploy of `infura.io documentation` to ${target} has succeeded.*\n ${env.RUN_DISPLAY_URL}")
       } catch (err) {
         githubNotify context: 'ci/jenkins: deploy-${target}', status: 'ERROR'
+        this.slack(color: 'danger', message: ":jenkins_explde: *Deploy of `infura.io documentatino` to ${target} has failed!*\n ${env.RUN_DISPLAY_URL}")
         throw err
       }
     }
   }
 }
-
-
-
 
 podTemplate(label: label, podRetention: onFailure(), activeDeadlineSeconds: 600, yaml: """
 apiVersion: v1
@@ -68,18 +65,15 @@ spec:
   ) {
   node(label) {
     this.installDeps()
-    this.deploy('dev')
 
-    // if ("${env.BRANCH_NAME}" != "master") {
-    //   this.deploy('dev')
-    // } else {
-    //   this.deploy('staging')
+    if ("${env.BRANCH_NAME}" != "master") {
+      this.deploy('dev')
+    } else {
+      stage('Approve prod') {
+        input message: 'Deploy to prod?'
+      }
 
-    //   stage('Approve prod') {
-    //     input message: 'Deploy to prod?'
-    //   }
-
-    //   this.deploy('prod')
-    // }
+      this.deploy('prod')
+    }
   }
 }

@@ -1,6 +1,5 @@
 ## Getting Started
 
-Tim was here.
 Getting started with Infura takes just a few minutes once you’ve [signed up](https://infura.io/register).
 
 After sign up, you will create your first "Project", which will include a v3 "Project ID" to use within your app when making requests to infura.io. This project ID also provides customized insights and analytics, and routes your data where it needs to go to access the most powerful infrastructure for Ethereum. [Learn more about getting started](/docs/gettingStarted/chooseaNetwork). If you have any issues, check our other resources below for help.
