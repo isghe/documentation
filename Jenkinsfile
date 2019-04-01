@@ -55,7 +55,7 @@ kind: Pod
 spec:
   containers:
     - name: ci
-      image: node:latest
+      image: 204717343847.dkr.ecr.us-east-1.amazonaws.com/infura/infrastructure-ci-website:latest
       tty: true
       resources:
         requests:
