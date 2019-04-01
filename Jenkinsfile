@@ -24,7 +24,7 @@ def deploy(target) {
   stage("Deploy ${target}") {
     container('ci') {
       this.slack(color: 'warning', message: ":ship: *Deploy of `infura.io documentation` to ${target} has begun.*\n ${env.RUN_DISPLAY_URL}")
-      githubNotify context: 'ci/jenkins: deploy-${target}', status: 'PENDING'
+      githubNotify context: "ci/jenkins: deploy-${target}", status: 'PENDING'
       try {
         sh """
           yarn run ${target == 'dev' ? 'bottler-dev' : 'bottler'}
@@ -35,10 +35,10 @@ def deploy(target) {
             aws s3 cp bundleDev.json s3://infura-docs/bundleDev.json --acl "public-read"
           fi
         """
-        githubNotify context: 'ci/jenkins: deploy-${target}', status: 'SUCCESS'
+        githubNotify context: "ci/jenkins: deploy-${target}", status: 'SUCCESS'
         this.slack(color: 'good', message: ":rocketship: *Deploy of `infura.io documentation` to ${target} has succeeded.*\n ${env.RUN_DISPLAY_URL}")
       } catch (err) {
-        githubNotify context: 'ci/jenkins: deploy-${target}', status: 'ERROR'
+        githubNotify context: "ci/jenkins: deploy-${target}", status: 'ERROR'
         this.slack(color: 'danger', message: ":jenkins_explde: *Deploy of `infura.io documentatino` to ${target} has failed!*\n ${env.RUN_DISPLAY_URL}")
         throw err
       }
