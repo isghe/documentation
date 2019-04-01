@@ -2,4 +2,6 @@
 Infura Documentation
 
 ## Contributing
-When making a PR, point it to our `dev` branch not `master`. That way it's easier for us to test out builds of our documentation before merging it into production.
+When making a PR, documentation will automatically be deployed to http://http-dev.infura.cloud/docs for review.
+
+`master` branch will be deployed to production upon approval on https://jenkins.infuratest.io/blue/organizations/jenkins/documentation/activity.
